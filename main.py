@@ -5,10 +5,11 @@ import os
 bot_token = os.environ.get("bot-token")
 
 import discord
+from discord.ext import commands
 from discord.ext.commands import Bot
 
 # client = discord.Client()
-client = Bot(".")
+client = commands.Bot(command_prefix = ".")
 
 @client.event
 async def on_ready():
