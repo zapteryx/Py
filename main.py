@@ -10,20 +10,20 @@ from discord.ext.commands import Bot
 # client = discord.Client()
 client = Bot(".")
 
-@bot.event
+@client.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
+    print('We have logged in as {0.user}'.format(client))
 
-@bot.event
+@client.event
 async def on_message(message):
-    if message.author == bot.user:
+    if message.author == client.user:
         return
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-@bot.command()
+@client.command()
 async def ping(ctx):
-    await ctx.send(f'Pong! {round(bot.latency * 1000)} ms')
+    await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
 
-bot.run(bot_token)
+client.run(bot_token)
