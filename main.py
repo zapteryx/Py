@@ -25,4 +25,6 @@ async def on_message(message):
 async def ping(ctx):
     await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
 
+client.add_command(ping)
+
 client.run(bot_token)
