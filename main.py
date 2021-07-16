@@ -21,8 +21,10 @@ async def on_message(message):
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-@bot.command()
+@commands.command()
 async def ping(ctx):
     await ctx.send(f'Pong! {round(bot.latency * 1000)} ms')
+
+bot.add_command(ping)
 
 bot.run(bot_token)
