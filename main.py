@@ -7,7 +7,7 @@ bot_token = os.environ.get("bot-token")
 from discord.ext import commands
 
 # client = discord.Client()
-bot = commands.Bot(command_prefix=",", help_command=None)
+bot = commands.Bot(command_prefix=',', help_command=None)
 
 @bot.event
 async def on_ready():
