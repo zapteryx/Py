@@ -4,27 +4,25 @@ load_dotenv()
 import os
 bot_token = os.environ.get("bot-token")
 
-from discord.ext.commands import Bot
+from discord.ext import commands
 
 # client = discord.Client()
-client = Bot(command_prefix = ".")
+bot = commands.Bot(command_prefix = ".")
 
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(bot))
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-@client.command()
+@bot.command()
 async def ping(ctx):
-    await ctx.send(f'Pong! {round(client.latency * 1000)} ms')
+    await ctx.send(f'Pong! {round(bot.latency * 1000)} ms')
 
-client.add_command(ping)
-
-client.run(bot_token)
+bot.run(bot_token)
