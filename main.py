@@ -7,7 +7,7 @@ bot_token = os.environ.get("bot-token")
 from discord.ext import commands
 
 # client = discord.Client()
-bot = commands.Bot(command_prefix = ".")
+bot = commands.Bot(command_prefix = ".", help_command=None)
 
 @bot.event
 async def on_ready():
@@ -21,10 +21,8 @@ async def on_message(message):
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-@commands.command()
+@bot.command()
 async def ping(ctx):
     await ctx.send(f'Pong! {round(bot.latency * 1000)} ms')
-
-bot.add_command(ping)
 
 bot.run(bot_token)
