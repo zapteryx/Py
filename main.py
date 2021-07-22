@@ -7,6 +7,8 @@ bot_token = os.environ.get("bot-token")
 from discord.ext import commands
 import discord
 
+from core import Core
+
 # Create a bot instance with prefix of ,
 bot = commands.Bot(command_prefix=',', help_command=None)
 
@@ -27,12 +29,10 @@ async def on_message(message):
     await bot.process_commands(message)
 
 @bot.command()
-async def about(ctx):
-    embed = discord.Embed(title="Py", description="a bot made with ❤️ and python\ndeveloped by **zapteryx**, **QuackNoodels121**, **Inquisitives**\nopen source at https://github.com/zapteryx/Py")
+async def reaction(ctx):
+    embed = discord.Embed(title="Reaction", description="test your reaction speed!\nget ready the word `Py`, and hit `[Send]` when I tell you to!")
     await ctx.send(embed=embed)
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f'Pong! {round(bot.latency * 1000)} ms')
+bot.add_cog(Core(bot))
 
 bot.run(bot_token)
