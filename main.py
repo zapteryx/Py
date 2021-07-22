@@ -1,4 +1,3 @@
-from reaction import Reaction
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -9,6 +8,7 @@ from discord.ext import commands
 import discord
 
 from core import Core
+from reaction import Reaction
 
 # Create a bot instance with prefix of ,
 bot = commands.Bot(command_prefix=',', help_command=None)
