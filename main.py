@@ -28,11 +28,6 @@ async def on_message(message):
     # Process the bot commands after our message actions are done
     await bot.process_commands(message)
 
-@bot.command()
-async def reaction(ctx):
-    embed = discord.Embed(title="Reaction", description="test your reaction speed!\nget ready the word `Py`, and hit `[Send]` when I tell you to!")
-    await ctx.send(embed=embed)
-
 bot.add_cog(Core(bot))
 
 bot.run(bot_token)
