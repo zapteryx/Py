@@ -12,7 +12,7 @@ class Reaction(commands.Cog):
         self.users = []
     
     @commands.command()
-    async def about(self, ctx):
+    async def reaction(self, ctx):
         if ctx.author.id in self.users:
             await ctx.send("can't start while in progress!")
         self.users.append(ctx.author.id)
