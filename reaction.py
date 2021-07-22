@@ -31,6 +31,6 @@ class Reaction(commands.Cog):
         except asyncio.TimeoutError:
             await probe.edit(content="%s, too late!" % ctx.author.mention)
         else:
-            await probe.edit(content="%s, time: %f" % (ctx.author.mention, (now - start).total_seconds() * 1000))
+            await probe.edit(content="%s, time: `%.2fms`" % (ctx.author.mention, (now - start).total_seconds() * 1000))
         finally:
             self.users.remove(ctx.author.id)
