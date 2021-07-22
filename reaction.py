@@ -20,7 +20,7 @@ class Reaction(commands.Cog):
         await ctx.send(embed=embed)
         time_to_wait = randint(3, 8)
         await asyncio.sleep(time_to_wait)
-        probe = await ctx.send("{}, hit send now!".format(ctx.author.mention))
+        probe = await ctx.send("%s, hit send now!" % ctx.author.mention)
         start = datetime.now()
         def message_check(m):
             return m.content.lower() == "py" and m.author.id == ctx.author.id and m.channel.id == ctx.channel.id
@@ -28,6 +28,6 @@ class Reaction(commands.Cog):
             msg = await self.bot.wait_for('message', check=message_check, timeout=5.0)
             now = datetime.now()
         except asyncio.TimeoutError:
-            await probe.edit("{}, too late!".format(ctx.author.mention))
+            await probe.edit("%s, too late!" % ctx.author.mention)
         else:
-            await probe.edit("{}, time: {}".format(ctx.author.mention, (now - start).total_seconds * 1000))
+            await probe.edit("%s, time: %f" % (ctx.author.mention, (now - start).total_seconds * 1000))
