@@ -6,7 +6,7 @@ class Core(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def about(ctx):
+    async def about(self, ctx):
         embed = Embed(title="Py", description="a bot made with ❤️ and python\n\ndeveloped by **zapteryx**, **QuackNoodels121**, **Inquisitives**\nopen source at https://github.com/zapteryx/Py")
         await ctx.send(embed=embed)
 
