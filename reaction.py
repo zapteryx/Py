@@ -15,6 +15,7 @@ class Reaction(commands.Cog):
     async def reaction(self, ctx):
         if ctx.author.id in self.users:
             await ctx.send("can't start while in progress!")
+            return
         self.users.append(ctx.author.id)
         embed = Embed(title="Reaction", description="test your reaction speed!\n\nget ready the word `Py`, and hit `[Send]` when I tell you to!")
         await ctx.send(embed=embed)
@@ -31,3 +32,5 @@ class Reaction(commands.Cog):
             await probe.edit(content="%s, too late!" % ctx.author.mention)
         else:
             await probe.edit(content="%s, time: %f" % (ctx.author.mention, (now - start).total_seconds() * 1000))
+        finally:
+            self.users.remove(ctx.author.id)
