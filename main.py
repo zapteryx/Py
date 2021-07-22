@@ -1,3 +1,4 @@
+from reaction import Reaction
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -29,5 +30,6 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.add_cog(Core(bot))
+bot.add_cog(Reaction(bot))
 
 bot.run(bot_token)
