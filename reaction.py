@@ -30,7 +30,7 @@ class Reaction(commands.Cog):
         initial = await ctx.send(embed=embed)
         for reaction in reactions:
             await initial.add_reaction(reaction)
-        random_reaction = randint(0, len(reaction) - 1)
+        random_reaction = randint(0, len(reactions) - 1)
         time_to_wait = randint(3, 8)
         await asyncio.sleep(time_to_wait)
         probe = await ctx.send("%s, react with %s now!" % ctx.author.mention, reactions[random_reaction])
