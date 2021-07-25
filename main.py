@@ -3,14 +3,15 @@ load_dotenv()
 
 import os
 bot_token = os.environ.get("bot-token")
+prefix = ',' if os.environ.get("prefix") == None else os.environ.get("prefix")
 
 from discord.ext.commands import Bot
 
 from core import Core
 from reaction import Reaction
 
-# Create a bot instance with prefix of ,
-bot = Bot(command_prefix=',', help_command=None)
+# Create a bot instance with prefix of , if not specified
+bot = Bot(command_prefix=prefix, help_command=None)
 
 # On connection ready event
 @bot.event
