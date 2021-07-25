@@ -29,7 +29,7 @@ class Reaction(commands.Cog):
         embed = Embed(title="Reaction", description="test your reaction speed!\nreact to my message with the reaction when I tell you to!")
         initial = await ctx.send(embed=embed)
         for reaction in reactions:
-            initial.add_reaction(reaction)
+            await initial.add_reaction(reaction)
         random_reaction = randint(0, len(reaction) - 1)
         time_to_wait = randint(3, 8)
         await asyncio.sleep(time_to_wait)
