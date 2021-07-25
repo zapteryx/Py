@@ -20,10 +20,8 @@ class Reaction(commands.Cog):
             await ctx.send("can't start while in progress!")
             return
         self.users.append(ctx.author.id)
-        multiple = False
         reactions = ["1️⃣"]
         if len(args) > 0 and args[0].lower() == "multiple":
-            multiple = True
             reactions.append("2️⃣")
             reactions.append("3️⃣")
         embed = Embed(title="Reaction", description="test your reaction speed!\nreact to my message with the reaction when I tell you to!")
@@ -33,7 +31,7 @@ class Reaction(commands.Cog):
         random_reaction = randint(0, len(reactions) - 1)
         time_to_wait = randint(3, 8)
         await asyncio.sleep(time_to_wait)
-        probe = await ctx.send("%s, react with %s now!" % ctx.author.mention, reactions[random_reaction])
+        probe = await ctx.send("%s, react with %s now!" % (ctx.author.mention, reactions[random_reaction]))
         start = datetime.now()
         def reaction_check(reaction, user):
             return user.id == ctx.author.id and str(reaction.emoji) == reactions[random_reaction]
