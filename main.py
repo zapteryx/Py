@@ -3,21 +3,21 @@ load_dotenv()
 
 import os
 bot_token = os.environ.get("bot-token")
+prefix = ',' if os.environ.get("prefix") == None else os.environ.get("prefix")
 
-from discord.ext import commands
-import discord
+from discord.ext.commands import Bot
 
 from core import Core
 from reaction import Reaction
 
-# Create a bot instance with prefix of ,
-bot = commands.Bot(command_prefix=',', help_command=None)
+# Create a bot instance with prefix of , if not specified
+bot = Bot(command_prefix=prefix, help_command=None)
 
 # On connection ready event
 @bot.event
 async def on_ready():
     # Log to console that we've logged in successfully
-    print('Logged in as: {0.user}'.format(bot))
+    print('Logged in as: %s' % bot.user)
 
 # On message event
 @bot.event
