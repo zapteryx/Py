@@ -22,7 +22,7 @@ class Reaction(commands.Cog):
         self.users.append(ctx.author.id)
         multiple = False
         reactions = ["1️⃣"]
-        if args[0].lower() == "multiple":
+        if len(args) > 0 and args[0].lower() == "multiple":
             multiple = True
             reactions.append("2️⃣")
             reactions.append("3️⃣")
