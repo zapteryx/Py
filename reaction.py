@@ -43,4 +43,5 @@ class Reaction(commands.Cog):
         else:
             await probe.edit(content="%s, time: `%.2fms`" % (ctx.author.mention, (now - start).total_seconds() * 1000))
         finally:
+            await initial.delete()
             self.users.remove(ctx.author.id)
