@@ -12,14 +12,17 @@ class Reaction(commands.Cog):
         self.users = []
     
     @commands.command()
-    async def reaction(self, ctx, arg):
+    async def reaction(self, ctx, *args):
+        if len(args) > 1:
+            await ctx.send("too many arguments! supported argument(s): `multiple`")
+            return
         if ctx.author.id in self.users:
             await ctx.send("can't start while in progress!")
             return
         self.users.append(ctx.author.id)
         multiple = False
         reactions = ["1️⃣"]
-        if arg.lower() == "multiple":
+        if args[0].lower() == "multiple":
             multiple = True
             reactions.append("2️⃣")
             reactions.append("3️⃣")
