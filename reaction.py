@@ -30,8 +30,9 @@ class Reaction(commands.Cog):
             await initial.add_reaction(reaction)
         random_reaction = randint(0, len(reactions) - 1)
         time_to_wait = randint(3, 8)
+        probe = await ctx.send("%s, wait..." % ctx.author.mention)
         await asyncio.sleep(time_to_wait)
-        probe = await ctx.send("%s, react with %s now!" % (ctx.author.mention, reactions[random_reaction]))
+        await probe.edit(content="%s, react with %s now!" % (ctx.author.mention, reactions[random_reaction]))
         start = datetime.now()
         def reaction_check(reaction, user):
             return user.id == ctx.author.id and str(reaction.emoji) == reactions[random_reaction]
