@@ -33,7 +33,7 @@ class Reaction(commands.Cog):
         probe = await ctx.send("%s, wait..." % ctx.author.mention)
         await asyncio.sleep(time_to_wait)
         await probe.edit(content="%s, react with %s now!" % (ctx.author.mention, reactions[random_reaction]))
-        start = datetime.now()
+        start = probe.edited_at
         def reaction_check(reaction, user):
             return user.id == ctx.author.id and str(reaction.emoji) == reactions[random_reaction]
         try:
