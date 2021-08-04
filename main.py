@@ -22,7 +22,8 @@ else:
             host=sql_info["host"],
             user=sql_info["username"],
             password=sql_info["password"],
-            database=sql_info["database"]
+            database=sql_info["database"],
+            ssl_disabled = True
         )
         db.autocommit = True
         print("Database support enabled!")
