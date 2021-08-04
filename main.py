@@ -12,24 +12,29 @@ for key in sql_info:
         sql_info = None
         break
 
-import mysql.connector
+import aiomysql, asyncio
 
-if sql_info == None:
-    db = None
-else:
-    try:
-        db = mysql.connector.connect(
+async def initialize_db(sql_info):
+    if sql_info == None:
+        db = None
+    else:
+        db = await aiomysql.create_pool(
             host=sql_info["host"],
+            port=3306,
             user=sql_info["username"],
             password=sql_info["password"],
-            database=sql_info["database"],
-            use_pure=True
+            db=sql_info["database"],
+            autocommit=True
         )
-        db.autocommit = True
-        print("Database support enabled!")
-    except mysql.connector.Error as err:
-        print("Disabling database support as an error occurred during attempt to connect:\n%s" % err)
-        db = None
+    return db
+
+loop = asyncio.get_event_loop()
+try:
+    db = loop.run_until_complete(initialize_db(sql_info))
+    print("Database support enabled!")
+except aiomysql.OperationalError as err:
+    print("Disabling database support as an error occurred during attempt to connect:\n%s" % err)
+    db = None
 
 from discord.ext.commands import Bot
 
