@@ -1,9 +1,12 @@
+from datetime import datetime
+
 from discord.ext import commands
 from discord import Embed
 
 class Core(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot, db):
         self.bot = bot
+        self.db = db
     
     @commands.command()
     async def about(self, ctx):
@@ -12,4 +15,10 @@ class Core(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send('Pong! (%i ms)' % round(self.bot.latency * 1000))
+        cursor = self.db.cursor()
+        start = datetime.now()
+        cursor.execute("SELECT 1")
+        cursor.fetchall()
+        now = datetime.now()
+        cursor.close()
+        await ctx.send('Pong! (API: %i ms, DB: %i ms)' % (round(self.bot.latency * 1000), (now - start).total_seconds() * 1000))
