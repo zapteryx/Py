@@ -15,10 +15,13 @@ class Core(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        cursor = self.db.cursor()
-        start = datetime.now()
-        cursor.execute("SELECT 1")
-        cursor.fetchall()
-        now = datetime.now()
-        cursor.close()
-        await ctx.send('Pong! (API: %i ms, DB: %i ms)' % (round(self.bot.latency * 1000), (now - start).total_seconds() * 1000))
+        if self.db != None:
+            cursor = self.db.cursor()
+            start = datetime.now()
+            cursor.execute("SELECT 1")
+            cursor.fetchall()
+            now = datetime.now()
+            cursor.close()
+            await ctx.send('Pong! (API: %i ms, DB: %i ms)' % (round(self.bot.latency * 1000), (now - start).total_seconds() * 1000))
+        else:
+            await ctx.send('Pong! (API: %i ms)' % round(self.bot.latency * 1000))
