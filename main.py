@@ -3,6 +3,7 @@ load_dotenv()
 
 import os
 bot_token = os.environ.get("bot-token")
+assert bot_token != None, "Bot token not specified."
 prefix = ',' if os.environ.get("prefix") == None else os.environ.get("prefix")
 
 from discord.ext.commands import Bot
