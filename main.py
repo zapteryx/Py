@@ -31,7 +31,10 @@ async def initialize_db(sql_info):
 loop = asyncio.get_event_loop()
 try:
     db = loop.run_until_complete(initialize_db(sql_info))
-    print("Database support enabled!")
+    if db == None:
+        print("Database information not provided (or partially missing), disabling support.")
+    else:
+        print("Database support enabled!")
 except aiomysql.OperationalError as err:
     print("Disabling database support as an error occurred during attempt to connect:\n%s" % err)
     db = None
