@@ -5,7 +5,7 @@ import os
 bot_token = os.environ.get("bot-token")
 assert bot_token != None, "Bot token not specified."
 prefix = ',' if os.environ.get("prefix") == None else os.environ.get("prefix")
-sql_info = {"host": os.environ.get("db-host"), "port": os.environ.get("db-port"), "username": os.environ.get("db-username"), "password": os.environ.get("db-password"), "database": os.environ.get("db-database")}
+sql_info = {"host": os.environ.get("db-host"), "port": 3306 if os.environ.get("db-port") == None else os.environ.get("db-port"), "username": os.environ.get("db-username"), "password": os.environ.get("db-password"), "database": os.environ.get("db-database")}
 
 for key in sql_info:
     if sql_info[key] == None:
